@@ -1,7 +1,7 @@
 from flask import Flask, send_file
 from PIL import Image, ImageDraw, ImageFont
 import io
-from datetime import datetime
+from datetime import datetime, timedelta, timezone
 
 app = Flask(__name__)
 
@@ -76,7 +76,7 @@ def modify_date(
     image = Image.open(source_image)
     draw = ImageDraw.Draw(image)
 
-    now = datetime.now()
+    now = datetime.now().astimezone(timezone(timedelta(hours=8)))
     time_str = now.strftime("%Y年%m月%d日 %H:%M:%S")
     # 去掉日期中的前导零
     time_str = time_str.replace("月0", "月").replace("日 ", "日 ")
@@ -143,7 +143,7 @@ def pass_hcs():
         init_x_rate=0.19,
         init_y_rate=0.57,
         cover_x_rate=0.7,
-        cover_y_rate=0.03,
+        cover_y_rate=0.04,
         init_font_size=41,
     )
     return send_file(img_io, mimetype="image/png")
