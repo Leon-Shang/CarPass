@@ -80,7 +80,8 @@ def modify_date(
     time_str = now.strftime("%Y年%m月%d日 %H:%M:%S")
     # 去掉日期中的前导零
     time_str = time_str.replace("月0", "月").replace("日 ", "日 ")
-    font = ImageFont.truetype("msyh.ttc", size=init_font_size, index=1)
+    # use rel path for ttc
+    font = ImageFont.truetype("./msyh.ttc", size=init_font_size, index=1)
     modify_image_date(
         image,
         draw,
@@ -94,7 +95,7 @@ def modify_date(
 
     if not remove_other_date:
         time_str = now.strftime("%Y-%m")
-        font = ImageFont.truetype("msyh.ttc", size=33)
+        font = ImageFont.truetype("./msyh.ttc", size=33)
         modify_image_date(
             image,
             draw,
@@ -108,7 +109,7 @@ def modify_date(
         )
 
         time_str = now.strftime("%H:%M:%S")
-        font = ImageFont.truetype("msyh.ttc", size=45)
+        font = ImageFont.truetype("./msyh.ttc", size=45)
         modify_image_date(
             image,
             draw,
